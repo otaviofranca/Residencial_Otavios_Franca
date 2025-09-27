@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Residencial Otavios Franca </title>
-<<<<<<< HEAD
     <link rel="stylesheet" href="estilo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-=======
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
->>>>>>> cee697a24df0ba3b257df225c0bffc548d1c8fe4
 </head>
 <body>
     <header>
@@ -293,5 +289,41 @@
             </div>
         </div>
     </footer>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const itemsPerPage = 2; //  itens por pagina
+    const items = document.querySelectorAll(".carousel-item");
+    const paginationContainer = document.createElement("div");
+    paginationContainer.className = "pagination";
+    document.querySelector("#gallery .container").appendChild(paginationContainer);
+
+    let currentPage = 1;
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+
+    function renderPage(page) {
+        items.forEach((item, index) => {
+            item.style.display =
+                index >= (page - 1) * itemsPerPage && index < page * itemsPerPage
+                    ? "block"
+                    : "none";
+        });
+
+        paginationContainer.innerHTML = "";
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = i;
+            btn.className = (i === page ? "active" : "");
+            btn.addEventListener("click", () => {
+                currentPage = i;
+                renderPage(currentPage);
+            });
+            paginationContainer.appendChild(btn);
+        }
+    }
+
+    renderPage(currentPage);
+});
+</script>
+
 </body>
 </html>
